@@ -1,0 +1,65 @@
+{% extends '../paginas/base.html' %}
+
+{% block titulo %} Tareas {% endblock %}
+
+
+{% block content %}
+<div class="container">        
+        <div class="col-12">
+                <h1>Sistema de Getión de Tareas</h1>
+        </div>        
+</div>
+
+<div class="card">
+        <div class="card-header">
+                <input type="button" class="btn-success" onclick="ToCrear()" value="Agregar nueva tarea">
+        </div>
+        <div class="card-body">
+                <h4 class="card-title">Tareas</h4>
+
+                <div class="table-container">
+                        <table class="table">
+                                <thead>
+                                        <tr>
+                                                <th>Completada</th>
+                                                <th>Nombre</th>
+                                                <th>Descripción</th>
+                                                <th>Fecha de Cumplimiento</th>
+                                                <th>Acciones</th>
+                                        </tr>
+                                </thead>
+                                <tbody>
+                                        {% for tarea in tareas %}
+                                        <tr>
+                                                <td><input type="checkbox" class="ui-checkbox" {% if tarea.completada %} checked {% endif %} disabled></td>
+                                                <td>{{tarea.nombre}}</td>
+                                                <td>{{tarea.descripcion}}</td>
+                                                <td>{{tarea.fecha_cumplimiento}}</td>
+                                                <td>
+                                                        <a name="" id="" class="btn btn-info" href="{% url 'editar' tarea.id %}"
+                                                                role="button">Editar</a>
+                                                        |
+                                                        <a name="" id="" class="btn btn-danger" href="{% url 'eliminar' tarea.id %}"
+                                                                role="button">Borrar</a>
+                                                        |
+                                                        <a name="" id="" class="btn btn-info" href="{% url 'completar' tarea.id %}"
+                                                                role="button">Completar</a>
+                                                </td>
+                                        </tr>
+                                        {% endfor %}
+                                </tbody>
+                        </table>
+                </div>
+
+
+        </div>
+       
+</div>
+<script>
+        function ToCrear() {
+                location.href = "{% url 'crear' %}";
+        }
+       
+        
+</script>
+{% endblock %}

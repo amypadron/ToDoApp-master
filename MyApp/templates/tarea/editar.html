@@ -1,0 +1,23 @@
+{% extends '../paginas/base.html' %}
+
+{% block titulo %} Editar Tarea {% endblock %}
+
+{% block content %}
+
+<div class="card">
+    <div class="card-header">
+       <label for="">Editar información de la tarea</label>
+    </div>
+    <div class="card-body">
+        <h4 class="card-title">Datos de la tarea</h4>
+        {%  include 'tarea/form.html' %}
+
+    </div>
+    <div class="card-footer text-muted">
+       
+    </div>
+</div>
+
+
+
+{% endblock %}

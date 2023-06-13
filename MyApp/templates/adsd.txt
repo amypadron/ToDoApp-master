@@ -1,0 +1,6 @@
+<link rel="stylesheet" href="{% static 'assets/global/styles/bootstrap.min.css' %}" >
+  <script src="{% static 'assets/global/scripts/popper.min.js' %}"></script>
+  <script src="{% static 'assets/global/scripts/bootstrap.min.js' %}"></script>
+  {% csrf_token %}
+{% for campo in formulario %}
+ç {% endfor %}

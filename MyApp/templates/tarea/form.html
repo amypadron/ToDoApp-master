@@ -1,0 +1,52 @@
+<form enctype="multipart/form-data" method="post">
+  {% csrf_token %} {% for campo in formulario %}
+  <div class="mb-3">
+    <label for="" class="form-label">{{ campo.label }}</label>
+    <input
+      type="{% if campo.label == "Fecha cumplimiento" %}date{% else %}{{campo.field.widget.input_type}}{% endif %}"
+      class="{% if campo.field.widget.input_type == "checkbox" %}
+        ui-checkbox
+      {% else %}
+       form-control
+     {% endif %}"
+      name="{{ campo.name}}"
+      id="{{ campo.name}}"
+      aria-describedby="helpId"{% if campo.value == True %} checked {% endif %}
+      placeholder="{{ campo.label }}"
+      {% if campo.value != "" %} 
+        {% if campo.field.widget.input_type != "checkbox" %}       
+          value="{% if campo.label == "Fecha cumplimiento"%}{{ campo.value|date:"Y-m-d" }}{% else %}{{ campo.value | default:'' }}{% endif %}"
+        {% endif %}
+      {% endif %}
+
+      {% if campo.field.widget.input_type == "checkbox" %}   {% endif %}
+      
+    />
+  
+  <div class="col-12 help-text">{{campo.errors}}</div>
+
+  
+
+  {% endfor %}
+
+  <div class="button-container">
+    <input
+    name=""
+    id=""
+    class="btn-success"
+    type="submit"
+    value="Enviar información"
+    />
+
+    <input type="button" class="btn-success" onclick="cancel()" value="Cancelar">
+    
+  </div>
+    
+  
+</div>
+</form>
+ <script>
+  function cancel() {
+                location.href = "{% url 'tareas' %}";
+        }
+ </script>
